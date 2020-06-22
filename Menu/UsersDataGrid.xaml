@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="Menu.UsersDataGrid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Menu"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type local:MyEnum}" x:Key="GetEnumValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:MyEnum"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+    <StackPanel Orientation="Vertical">
+        <DataGrid x:Name="dgUsers" CanUserAddRows="False" AutoGenerateColumns="False" >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Profile" Width="SizeToCells" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Profile}" Width="69"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="FrameworkElement.VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="FrameworkElement.VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridComboBoxColumn Header="Operation 1" ItemsSource="{Binding Source={StaticResource GetEnumValues}}"
+                                        SelectedValueBinding="{Binding Display}" >
+                    <DataGridComboBoxColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="FrameworkElement.VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridComboBoxColumn.ElementStyle>
+                </DataGridComboBoxColumn>
+                <DataGridTemplateColumn Header="Smoker" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Smoker, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Birthday">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding Bday}" BorderThickness="0" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+               
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnADD" Content="추가" Click="btnADD_Click" />
+    </StackPanel>
+</UserControl>

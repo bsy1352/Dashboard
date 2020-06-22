@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="Menu.UserAdmin"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Menu"
+             mc:Ignorable="d" 
+             Height="300" Width="300" Background="White">
+    <Grid Name="Grid1" ShowGridLines="False" Margin="0,10">
+        <Image x:Name="image" Grid.Row="0" Grid.Column="0" Source="증명사진.jpg" Margin="51,50,47,83" />
+        <Rectangle Fill="Black" Margin="84,54,75,83" >
+            <Rectangle.Clip>
+                <CombinedGeometry GeometryCombineMode="Exclude">
+                    <CombinedGeometry.Geometry1>
+                        <RectangleGeometry Rect="0,0,10000,10000"/>
+                    </CombinedGeometry.Geometry1>
+                    <CombinedGeometry.Geometry2>
+                        <EllipseGeometry Center="70,70" RadiusX="70" RadiusY="70"/>
+                    </CombinedGeometry.Geometry2>
+                </CombinedGeometry>
+            </Rectangle.Clip>
+        </Rectangle>
+    </Grid>
+</UserControl>
